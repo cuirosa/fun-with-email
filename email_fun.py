@@ -8,13 +8,13 @@ going = True
 password = input("Please input the password: ")
 
 imapObj = imapclient.IMAPClient("imap-mail.outlook.com", ssl = True)
-imapObj.login("boredatwork@outlook.hu",password)
+imapObj.login("emailfortheproject",password)
 imapObj.select_folder("INBOX", readonly = False)
 
 smtpObj = smtplib.SMTP("smtp-mail.outlook.com", 587) #SMTP connection, .connect() is automatically called
 smtpObj.ehlo() #showing our hand for a handshake - if the server is a cool dude and shakes back then we're good
 smtpObj.starttls() #start tls encryption
-smtpObj.login("boredatwork@outlook.hu",password)
+smtpObj.login("emailfortheproject",password)
 
 while going:
     IDs = imapObj.search("UNSEEN")
@@ -33,4 +33,3 @@ while going:
     #    if email.html_part != None:
     #        print(email.html_part.get_payload().decode(email.html_part.charset))
 smtpObj.quit()
-print("HEfinished")
